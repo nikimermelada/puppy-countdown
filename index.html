@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Puppy Countdown</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: #f8efe3;
+      color: #543e32;
+      font-family: Georgia, serif;
+      text-align: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 560px;
+      padding: 40px 24px;
+      background: #fffaf3;
+      border-radius: 24px;
+      box-shadow: 0 12px 40px #543e3210;
+    }
+
+    .puppy {
+      font-size: 76px;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow {
+      font: 12px Arial, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(30px, 7vw, 46px);
+      line-height: 1.15;
+      margin: 16px 0;
+    }
+
+    .subtitle {
+      font: 15px/1.6 Arial, sans-serif;
+      color: #8a7465;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 32px 0 24px;
+    }
+
+    .unit {
+      padding: 18px 4px;
+      background: #f4e5d4;
+      border-radius: 12px;
+    }
+
+    .number {
+      display: block;
+      font:  bold clamp(24px, 6vw, 36px) Arial, sans-serif;
+    }
+
+    .label {
+      display: block;
+      margin-top: 8px;
+      font: 10px Arial, sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .date {
+      font: 13px Arial, sans-serif;
+      color: #8a7465;
+    }
+
+    #message {
+      font: 16px/1.6 Arial, sans-serif;
+      margin-top: 24px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="puppy">🐶</div>
+
+    <p class="eyebrow">A tiny countdown to a big adventure</p>
+
+    <h1 id="heading">Our little roommate arrives in...</h1>
+
+    <p class="subtitle">
+      One more sleep until our family gets a little bigger.
+    </p>
+
+    <div class="countdown" id="countdown">
+      <div class="unit">
+        <span class="number" id="days">00</span>
+        <span class="label">DAYS</span>
+      </div>
+      <div class="unit">
+        <span class="number" id="hours">00</span>
+        <span class="label">HOURS</span>
+      </div>
+      <div class="unit">
+        <span class="number" id="minutes">00</span>
+        <span class="label">MINUTES</span>
+      </div>
+      <div class="unit">
+        <span class="number" id="seconds">00</span>
+        <span class="label">SECONDS</span>
+      </div>
+    </div>
+
+    <p class="date">Wednesday, October 21 · 17:30 Madrid time</p>
+
+    <p id="message" hidden>
+      IT'S PUPPY DAY! We're going to meet our new best friend.
+      Get ready for all the cuddles. ❤️
+    </p>
+  </main>
+
+  <script>
+    // The adoption time, including Madrid's UTC+2 offset.
+    const arrival = new Date("2026-10-21T17:30:00+02:00").getTime();
+
+    function updateCountdown() {
+      const remaining = arrival - Date.now();
+
+      if (remaining <= 0) {
+        document.getElementById("countdown").hidden = true;
+        document.getElementById("heading").textContent =
+          "Our new adventure starts now!";
+        document.getElementById("message").hidden = false;
+        return;
+      }
+
+      document.getElementById("days").textContent =
+        String(Math.floor(remaining / 86400000)).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(Math.floor(remaining / 3600000) % 24).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(Math.floor(remaining / 60000) % 60).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(Math.floor(remaining / 1000) % 60).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
