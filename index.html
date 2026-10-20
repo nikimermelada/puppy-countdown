@@ -32,10 +32,15 @@
       box-shadow: 0 12px 40px #543e3210;
     }
 
-    .puppy {
-      font-size: 76px;
-      margin-bottom: 16px;
-    }
+    .puppy-photo {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
 
     .eyebrow {
       font: 12px Arial, sans-serif;
@@ -97,14 +102,18 @@
 
 <body>
   <main class="card">
-    <div class="puppy">🐶</div>
+   <img
+  class="puppy-photo"
+  src="ned.jpg"
+  alt="Ned Flanders"
+/>
 
     <p class="eyebrow">A tiny countdown to a big adventure</p>
 
-    <h1 id="heading">Our little roommate arrives in...</h1>
+    <h1 id="heading">Ned Flanders arrives in...</h1>
 
     <p class="subtitle">
-      One more sleep until our family gets a little bigger.
+      Rent: unpaid. Personal space: gone. Ears: operational.
     </p>
 
     <div class="countdown" id="countdown">
@@ -129,7 +138,7 @@
     <p class="date">Wednesday, October 21 · 17:30 Madrid time</p>
 
     <p id="message" hidden>
-      IT'S PUPPY DAY! We're going to meet our new best friend.
+      NED FLANDERS HAS ENTERED THE BUILDING. 
       Get ready for all the cuddles. ❤️
     </p>
   </main>
